@@ -5,7 +5,7 @@ RUN apk update && \
 
 WORKDIR /evolution
 
-RUN git clone --branch v2.3.7 https://github.com/evolution-foundation/evolution-api.git .
+RUN git clone --branch release https://github.com/evolution-foundation/evolution-api.git .
 
 RUN npm ci --silent
 
