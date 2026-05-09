@@ -34,6 +34,7 @@ COPY --from=builder /evolution/dist ./dist
 COPY --from=builder /evolution/prisma ./prisma
 COPY --from=builder /evolution/public ./public
 COPY --from=builder /evolution/Docker ./Docker
+COPY --from=builder /evolution/runWithProvider.js ./runWithProvider.js
 
 EXPOSE 8080
 
