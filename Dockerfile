@@ -7,8 +7,8 @@ WORKDIR /evolution
 
 RUN git clone https://github.com/evolution-foundation/evolution-api.git .
 
-RUN npm ci --silent
-RUN npx prisma generate
+RUN npm install --silent
+RUN npx prisma generate --schema=./prisma/postgresql-schema.prisma
 
 WORKDIR /evolution/manager
 RUN npm install
@@ -16,11 +16,11 @@ RUN npm run build
 
 WORKDIR /evolution
 
-RUN cp .env.example .env
-
 RUN chmod +x ./Docker/scripts/* && dos2unix ./Docker/scripts/*
 
 RUN npm run build
+
+# ---------- FINAL ----------
 
 FROM node:20-alpine AS final
 
