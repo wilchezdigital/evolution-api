@@ -38,4 +38,4 @@ COPY --from=builder /evolution/runWithProvider.js ./runWithProvider.js
 
 EXPOSE 8080
 
-ENTRYPOINT ["/bin/sh", "-c", "export DATABASE_PROVIDER=$DATABASE_PROVIDER && . ./Docker/scripts/deploy_database.sh && npm run start:prod"]
+ENTRYPOINT ["/bin/sh", "-c", "cp -r ./prisma/postgresql-migrations ./prisma/migrations && npx prisma migrate deploy --schema ./prisma/postgresql-schema.prisma && npm run start:prod"]
