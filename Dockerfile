@@ -9,11 +9,15 @@ RUN git clone https://github.com/evolution-foundation/evolution-api.git .
 
 RUN npm ci --silent
 
+WORKDIR /evolution/manager
+RUN npm install
+RUN npm run build
+
+WORKDIR /evolution
+
 RUN cp .env.example .env
 
 RUN chmod +x ./Docker/scripts/* && dos2unix ./Docker/scripts/*
-
-RUN ./Docker/scripts/generate_database.sh
 
 RUN npm run build
 
@@ -33,6 +37,7 @@ COPY --from=builder /evolution/node_modules ./node_modules
 COPY --from=builder /evolution/dist ./dist
 COPY --from=builder /evolution/prisma ./prisma
 COPY --from=builder /evolution/public ./public
+COPY --from=builder /evolution/manager ./manager
 COPY --from=builder /evolution/Docker ./Docker
 COPY --from=builder /evolution/runWithProvider.js ./runWithProvider.js
 
