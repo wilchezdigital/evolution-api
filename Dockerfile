@@ -8,6 +8,8 @@ RUN git clone https://github.com/evolution-foundation/evolution-api.git .
 
 RUN npm install
 
+RUN npm run build
+
 EXPOSE 8080
 
 CMD ["npm", "run", "start:prod"]
