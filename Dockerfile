@@ -5,8 +5,7 @@ RUN apk update && \
 
 WORKDIR /evolution
 
-RUN git clone https://github.com/evolution-foundation/evolution-api.git . && \
-    git checkout cd800f2976e1e5b682fbf86a01ee4d85ae61f370
+RUN git clone https://github.com/evolution-foundation/evolution-api.git .
 
 RUN npm ci --silent
 RUN npx prisma generate
