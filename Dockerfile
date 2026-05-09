@@ -9,6 +9,8 @@ RUN git clone https://github.com/evolution-foundation/evolution-api.git .
 
 RUN npm ci --silent
 
+RUN cp .env.example .env
+
 RUN chmod +x ./Docker/scripts/* && dos2unix ./Docker/scripts/*
 
 RUN ./Docker/scripts/generate_database.sh
