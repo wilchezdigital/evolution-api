@@ -38,4 +38,4 @@ COPY --from=builder /evolution/runWithProvider.js ./runWithProvider.js
 
 EXPOSE 8080
 
-ENTRYPOINT ["/bin/bash", "-c", ". ./Docker/scripts/deploy_database.sh && npm run start:prod" ]
+ENTRYPOINT ["/bin/sh", "-c", "export DATABASE_PROVIDER=$DATABASE_PROVIDER && . ./Docker/scripts/deploy_database.sh && npm run start:prod"]
